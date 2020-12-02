@@ -64,10 +64,9 @@ def test_build_index_transform_values():
 def test_find_factors_empty_index():
     index = {}
     target = 1000
-    f1, f2 = day001.find_factors(index, target)
+    factors = day001.find_factors(index, target)
 
-    assert f1 == 0
-    assert f2 == 0
+    assert len(factors) == 0
 
 
 def test_find_factors_not_found():
@@ -76,17 +75,81 @@ def test_find_factors_not_found():
         11: 1
     }
     target = 1000
-    f1, f2 = day001.find_factors(index, target)
+    factors = day001.find_factors(index, target)
 
-    assert f1 == 0
-    assert f2 == 0
+    assert len(factors) == 0
 
 
 def test_find_factors_correct_sum():
     index = {value: i for i, value in enumerate(range(100, 200))}
     target = 300
 
-    f1, f2 = day001.find_factors(index, target)
+    factors = day001.find_factors(index, target)
 
-    assert f1 + f2 != 0
-    assert f1 + f2 == target
+    assert len(factors) != 0
+    assert sum(factors) == target
+
+
+def test_find_factors_num_factors():
+    index = {value: i for i, value in enumerate(range(1, 101))}
+    target = 36
+    num_factors = 3
+
+    factors = day001.find_factors(index, target, num_factors=3)
+
+    assert len(factors) == num_factors
+    assert sum(factors) != 0
+    assert sum(factors) == target
+
+
+def test_find_factors_exclude_repeats():
+    index = {value: i for i, value in enumerate(range(1, 101))}
+    target = 36
+    num_factors = 3
+
+    factors = day001.find_factors(index, target, num_factors=3)
+
+    print(factors)
+    assert len(factors) == num_factors
+    assert sum(factors) != 0
+    assert sum(factors) == target
+    assert len(set(factors)) == len(factors)
+
+
+def test_example_part1():
+    inputs = '''
+    1721
+    979
+    366
+    299
+    675
+    1456'''
+    target = 2020
+
+    index = day001.build_index(inputs, transform=int)
+    factors = day001.find_factors(index, target, num_factors=2)
+
+    assert len(factors) == 2
+    assert sum(factors) == target
+    assert 1721 in factors
+    assert 299 in factors
+
+
+def test_example_part2():
+    inputs = '''
+    1721
+    979
+    366
+    299
+    675
+    1456'''
+    target = 2020
+
+    index = day001.build_index(inputs, transform=int)
+    factors = day001.find_factors(index, target, num_factors=3)
+
+    assert len(factors) == 3
+    assert sum(factors) == target
+    assert 979 in factors
+    assert 366 in factors
+    assert 675 in factors
