@@ -1,3 +1,5 @@
+import functools
+import operator
 import pytest
 from pprint import pprint
 from .. import day003
@@ -152,3 +154,33 @@ def test_count_trees_example():
     trees = day003.count_trees(grid_data, trajectory)
 
     assert trees == 7
+
+
+def test_count_trees_example_part2():
+    grid_data = '''
+        ..##.......
+        #...#...#..
+        .#....#..#.
+        ..#.#...#.#
+        .#...##..#.
+        ..#.##.....
+        .#.#.#....#
+        .#........#
+        #.##...#...
+        #...##....#
+        .#..#...#.#'''
+
+    trajectories = [
+        day003.Vector(1, 1),
+        day003.Vector(3, 1),
+        day003.Vector(5, 1),
+        day003.Vector(7, 1),
+        day003.Vector(1, 2),
+    ]
+
+    tree_counts = [
+        day003.count_trees(grid_data, trajectory)
+        for trajectory in trajectories]
+    product = functools.reduce(operator.mul, tree_counts)
+
+    assert product == 336
