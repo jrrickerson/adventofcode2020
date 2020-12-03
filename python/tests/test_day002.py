@@ -112,3 +112,15 @@ def test_count_valid_passwords_example():
     valid = day002.count_valid_passwords(password_entries)
 
     assert valid == 2
+
+
+def test_count_valid_passwords_example_by_index():
+    password_entries = [
+        '1-3 a: abcde',
+        '1-3 b: cdefg',
+        '2-9 c: ccccccccc'
+    ]
+
+    valid = day002.count_valid_passwords(password_entries, use_index=True)
+
+    assert valid == 1
