@@ -5,7 +5,7 @@ from .. import day004
 
 
 def test_parse_passport_empty():
-    passport_string = ''
+    passport_string = ""
     expected_dict = {}
 
     passport = day004.parse_passport(passport_string)
@@ -15,17 +15,18 @@ def test_parse_passport_empty():
 
 def test_parse_passport_single_line():
     passport_string = (
-        'ecl:gry pid:860033327 eyr:2020 hcl:#fffffd '
-        'byr:1937 iyr:2017 cid:147 hgt:183cm')
+        "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd "
+        "byr:1937 iyr:2017 cid:147 hgt:183cm"
+    )
     expected_dict = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
     passport = day004.parse_passport(passport_string)
 
@@ -33,18 +34,18 @@ def test_parse_passport_single_line():
 
 
 def test_parse_passport_multi_line():
-    passport_string = '''
+    passport_string = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
-        byr:1937 iyr:2017 cid:147 hgt:183cm'''
+        byr:1937 iyr:2017 cid:147 hgt:183cm"""
     expected_dict = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
     passport = day004.parse_passport(passport_string)
 
@@ -52,7 +53,7 @@ def test_parse_passport_multi_line():
 
 
 def test_parse_passports_no_data():
-    passport_data = ''
+    passport_data = ""
     expected_passports = 0
     passports = day004.parse_passports(io.StringIO(passport_data))
 
@@ -60,14 +61,14 @@ def test_parse_passports_no_data():
 
 
 def test_parse_passports_multi_blank_lines():
-    passport_data = '''
+    passport_data = """
 
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
         byr:1937 iyr:2017 cid:147 hgt:183cm
 
 
         iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
-        hcl:#cfa07d byr:1929'''
+        hcl:#cfa07d byr:1929"""
     expected_passports = 2
     passports = day004.parse_passports(io.StringIO(passport_data))
 
@@ -75,7 +76,7 @@ def test_parse_passports_multi_blank_lines():
 
 
 def test_parse_passports():
-    passport_data = '''
+    passport_data = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
         byr:1937 iyr:2017 cid:147 hgt:183cm
 
@@ -88,7 +89,7 @@ def test_parse_passports():
         hgt:179cm
 
         hcl:#cfa07d eyr:2025 pid:166559648
-        iyr:2011 ecl:brn hgt:59in'''
+        iyr:2011 ecl:brn hgt:59in"""
     expected_passports = 4
     passports = day004.parse_passports(io.StringIO(passport_data))
 
@@ -97,16 +98,16 @@ def test_parse_passports():
 
 def test_validate_passport_valid():
     passport = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
-    required_keys = ('ecl', 'pid', 'eyr', 'hcl')
+    required_keys = ("ecl", "pid", "eyr", "hcl")
     valid = day004.validate_passport(passport, required_keys)
 
     assert valid is True
@@ -114,16 +115,16 @@ def test_validate_passport_valid():
 
 def test_validate_passport_invalid():
     passport = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
-    required_keys = ('ecl', 'pid', 'eyr', 'hcl', 'abc')
+    required_keys = ("ecl", "pid", "eyr", "hcl", "abc")
     valid = day004.validate_passport(passport, required_keys)
 
     assert valid is False
@@ -131,100 +132,98 @@ def test_validate_passport_invalid():
 
 def test_validate_passport_empty_validation():
     passport = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
-    required_keys = ('ecl', 'pid', 'eyr', 'hcl')
-    valid = day004.validate_passport(
-        passport, required_keys,
-        validation_rules={})
+    required_keys = ("ecl", "pid", "eyr", "hcl")
+    valid = day004.validate_passport(passport, required_keys, validation_rules={})
 
     assert valid is True
 
 
 def test_validate_passport_validation_rules():
     passport = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
-    required_keys = ('ecl', 'pid', 'eyr', 'hcl')
+    required_keys = ("ecl", "pid", "eyr", "hcl")
     validation_rules = {
-            'byr': lambda x: 1920 <= int(x) <= 2002,
-            'hcl': lambda x: re.match('#[0-9a-f]{6}', x)
+        "byr": lambda x: 1920 <= int(x) <= 2002,
+        "hcl": lambda x: re.match("#[0-9a-f]{6}", x),
     }
     valid = day004.validate_passport(
-        passport, required_keys,
-        validation_rules=validation_rules)
+        passport, required_keys, validation_rules=validation_rules
+    )
 
     assert valid is True
 
 
 def test_validate_passport_validation_rules_invalid():
     passport = {
-        'ecl': 'gry',
-        'pid': '860033327',
-        'eyr': '2020',
-        'hcl': '#fffffd',
-        'byr': '1937',
-        'iyr': '2017',
-        'cid': '147',
-        'hgt': '183cm'
+        "ecl": "gry",
+        "pid": "860033327",
+        "eyr": "2020",
+        "hcl": "#fffffd",
+        "byr": "1937",
+        "iyr": "2017",
+        "cid": "147",
+        "hgt": "183cm",
     }
-    required_keys = ('ecl', 'pid', 'eyr', 'hcl')
+    required_keys = ("ecl", "pid", "eyr", "hcl")
     validation_rules = {
-            'byr': lambda x: 1920 <= int(x) <= 2002,
-            'hcl': lambda x: re.match('#[0-9a-f]{6}', x),
-            'ecl': lambda x: x in ('abc', 'def'),
+        "byr": lambda x: 1920 <= int(x) <= 2002,
+        "hcl": lambda x: re.match("#[0-9a-f]{6}", x),
+        "ecl": lambda x: x in ("abc", "def"),
     }
     valid = day004.validate_passport(
-        passport, required_keys,
-        validation_rules=validation_rules)
+        passport, required_keys, validation_rules=validation_rules
+    )
 
     assert valid is False
 
 
 def test_validate_height_no_units():
-    value = '136'
+    value = "136"
     valid = day004.validate_height(value)
 
     assert valid is False
 
 
 def test_validate_height_out_of_range():
-    value = '72cm'
+    value = "72cm"
     valid = day004.validate_height(value)
 
     assert valid is False
 
 
 def test_validate_height_inches():
-    value = '72in'
+    value = "72in"
     valid = day004.validate_height(value)
 
     assert valid is True
 
 
 def test_validate_height_centimeters():
-    value = '155cm'
+    value = "155cm"
     valid = day004.validate_height(value)
 
     assert valid is True
 
 
 def test_count_valid_passports_example():
-    passport_data = '''
+    passport_data = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
         byr:1937 iyr:2017 cid:147 hgt:183cm
 
@@ -237,15 +236,15 @@ def test_count_valid_passports_example():
         hgt:179cm
 
         hcl:#cfa07d eyr:2025 pid:166559648
-        iyr:2011 ecl:brn hgt:59in'''
+        iyr:2011 ecl:brn hgt:59in"""
     required_fields = [
-        'byr',
-        'iyr',
-        'eyr',
-        'hgt',
-        'hcl',
-        'ecl',
-        'pid',
+        "byr",
+        "iyr",
+        "eyr",
+        "hgt",
+        "hcl",
+        "ecl",
+        "pid",
     ]
 
     # Pretend to be a file
@@ -256,7 +255,7 @@ def test_count_valid_passports_example():
 
 
 def test_count_valid_passports_example_part2_invalid():
-    passport_data = '''
+    passport_data = """
         eyr:1972 cid:100
         hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
 
@@ -269,30 +268,27 @@ def test_count_valid_passports_example_part2_invalid():
 
         hgt:59cm ecl:zzz
         eyr:2038 hcl:74454a iyr:2023
-        pid:3556412378 byr:2007'''
-    required_fields = [
-        'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
+        pid:3556412378 byr:2007"""
+    required_fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
     validation_rules = {
-        'byr': lambda x: 1920 <= int(x) <= 2002,
-        'iyr': lambda x: 2010 <= int(x) <= 2020,
-        'eyr': lambda x: 2020 <= int(x) <= 2030,
-        'hgt': day004.validate_height,
-        'hcl': lambda x: re.match(day004.RE_VALID_HAIR_COLOR, x),
-        'ecl': lambda x: x in (
-            'amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'),
-        'pid': lambda x: re.match(day004.RE_VALID_PID, x),
+        "byr": lambda x: 1920 <= int(x) <= 2002,
+        "iyr": lambda x: 2010 <= int(x) <= 2020,
+        "eyr": lambda x: 2020 <= int(x) <= 2030,
+        "hgt": day004.validate_height,
+        "hcl": lambda x: re.match(day004.RE_VALID_HAIR_COLOR, x),
+        "ecl": lambda x: x in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth"),
+        "pid": lambda x: re.match(day004.RE_VALID_PID, x),
     }
 
     # Pretend to be a file
     stream = io.StringIO(passport_data.strip())
-    count = day004.count_valid_passports(
-        stream, required_fields, validation_rules)
+    count = day004.count_valid_passports(stream, required_fields, validation_rules)
 
     assert count == 0
 
 
 def test_count_valid_passports_example_part2_valid():
-    passport_data = '''
+    passport_data = """
         pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
         hcl:#623a2f
 
@@ -305,23 +301,20 @@ def test_count_valid_passports_example_part2_valid():
         eyr:2022
 
         iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
-        '''
-    required_fields = [
-        'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
+        """
+    required_fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
     validation_rules = {
-        'byr': lambda x: 1920 <= int(x) <= 2002,
-        'iyr': lambda x: 2010 <= int(x) <= 2020,
-        'eyr': lambda x: 2020 <= int(x) <= 2030,
-        'hgt': day004.validate_height,
-        'hcl': lambda x: re.match(day004.RE_VALID_HAIR_COLOR, x),
-        'ecl': lambda x: x in (
-            'amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'),
-        'pid': lambda x: re.match(day004.RE_VALID_PID, x),
+        "byr": lambda x: 1920 <= int(x) <= 2002,
+        "iyr": lambda x: 2010 <= int(x) <= 2020,
+        "eyr": lambda x: 2020 <= int(x) <= 2030,
+        "hgt": day004.validate_height,
+        "hcl": lambda x: re.match(day004.RE_VALID_HAIR_COLOR, x),
+        "ecl": lambda x: x in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth"),
+        "pid": lambda x: re.match(day004.RE_VALID_PID, x),
     }
 
     # Pretend to be a file
     stream = io.StringIO(passport_data.strip())
-    count = day004.count_valid_passports(
-        stream, required_fields, validation_rules)
+    count = day004.count_valid_passports(stream, required_fields, validation_rules)
 
     assert count == 4

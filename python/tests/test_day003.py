@@ -6,24 +6,24 @@ from .. import day003
 
 
 def test_generate_grid_empty():
-    '''Test that an empty grid string produces and empty grid'''
-    grid_data = ''
+    """Test that an empty grid string produces and empty grid"""
+    grid_data = ""
     grid = day003.generate_grid(grid_data)
 
     assert grid == []
 
 
 def test_generate_grid_matches_dimensions():
-    '''Test that the grid generated matches the dimensions of the
-    string data'''
-    grid_data = '''
+    """Test that the grid generated matches the dimensions of the
+    string data"""
+    grid_data = """
         ..##.......
         #...#...#..
         .#....#..#.
-        ..#.#...#.#'''
+        ..#.#...#.#"""
 
-    expected_rows = grid_data.strip().count('\n') + 1
-    expected_columns = grid_data.strip().index('\n')
+    expected_rows = grid_data.strip().count("\n") + 1
+    expected_columns = grid_data.strip().index("\n")
     grid = day003.generate_grid(grid_data)
 
     pprint(grid)
@@ -109,8 +109,8 @@ def test_next_pos_negative_y_wraparound():
 
 
 def test_count_trees_empty_grid_raises():
-    '''Test that an empty grid raises an exception'''
-    grid_data = ''
+    """Test that an empty grid raises an exception"""
+    grid_data = ""
     trajectory = (1, 1)
 
     with pytest.raises(ValueError):
@@ -118,7 +118,7 @@ def test_count_trees_empty_grid_raises():
 
 
 def test_count_trees_empty_trajectory_raises():
-    grid_data = '''
+    grid_data = """
         ..##.......
         #...#...#..
         .#....#..#.
@@ -129,7 +129,7 @@ def test_count_trees_empty_trajectory_raises():
         .#........#
         #.##...#...
         #...##....#
-        .#..#...#.#'''
+        .#..#...#.#"""
     trajectory = ()
 
     with pytest.raises(ValueError):
@@ -137,7 +137,7 @@ def test_count_trees_empty_trajectory_raises():
 
 
 def test_count_trees_example():
-    grid_data = '''
+    grid_data = """
         ..##.......
         #...#...#..
         .#....#..#.
@@ -148,7 +148,7 @@ def test_count_trees_example():
         .#........#
         #.##...#...
         #...##....#
-        .#..#...#.#'''
+        .#..#...#.#"""
     trajectory = day003.Vector(3, 1)
 
     trees = day003.count_trees(grid_data, trajectory)
@@ -157,7 +157,7 @@ def test_count_trees_example():
 
 
 def test_count_trees_example_part2():
-    grid_data = '''
+    grid_data = """
         ..##.......
         #...#...#..
         .#....#..#.
@@ -168,7 +168,7 @@ def test_count_trees_example_part2():
         .#........#
         #.##...#...
         #...##....#
-        .#..#...#.#'''
+        .#..#...#.#"""
 
     trajectories = [
         day003.Vector(1, 1),
@@ -179,8 +179,8 @@ def test_count_trees_example_part2():
     ]
 
     tree_counts = [
-        day003.count_trees(grid_data, trajectory)
-        for trajectory in trajectories]
+        day003.count_trees(grid_data, trajectory) for trajectory in trajectories
+    ]
     product = functools.reduce(operator.mul, tree_counts)
 
     assert product == 336

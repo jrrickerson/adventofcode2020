@@ -1,50 +1,50 @@
-'''Advent of Code 2020
+"""Advent of Code 2020
    Day 2 Solution - Tobaggan Trajectory
-'''
+"""
 import functools
 import operator
 from collections import namedtuple
 
-Vector = namedtuple('Vector', ['x', 'y'])
+Vector = namedtuple("Vector", ["x", "y"])
 
 
 def generate_grid(grid_data):
-    '''Given a multi-line string of text containing symbols, generate a
+    """Given a multi-line string of text containing symbols, generate a
     two-dimensional list of values.
     Symbol Map:
         . = 0
-        # = 1'''
+        # = 1"""
     if not grid_data:
         return []
     grid = [
-        [1 if char == '#' else 0 for char in line]
-        for line in grid_data.strip().split()]
+        [1 if char == "#" else 0 for char in line] for line in grid_data.strip().split()
+    ]
     return grid
 
 
 def next_pos(pos, grid_size, trajectory):
-    '''Given a position, grid size, and trajectory vector, calculate
+    """Given a position, grid size, and trajectory vector, calculate
     the next position along the trajectory within the grid given PacMan style
-    wraparound rules'''
+    wraparound rules"""
     newpos = Vector(
-        x=(pos.x + trajectory.x) % grid_size.x,
-        y=(pos.y + trajectory.y) % grid_size.y)
+        x=(pos.x + trajectory.x) % grid_size.x, y=(pos.y + trajectory.y) % grid_size.y
+    )
     return newpos
 
 
 def count_trees(grid_data, trajectory, start=Vector(0, 0)):
-    '''Using a textual representation of a grid, navigate the grid using a
+    """Using a textual representation of a grid, navigate the grid using a
     start position and trajectory and count the number of "trees"
-    encountered.'''
+    encountered."""
     if not (grid_data and trajectory):
-        raise ValueError('Empty grid or trajectory specified')
+        raise ValueError("Empty grid or trajectory specified")
     grid = generate_grid(grid_data)
     grid_size = Vector(len(grid[0]), len(grid))
-    #print('Grid Size', grid_size)
+    # print('Grid Size', grid_size)
     tree_count = 0
     pos = start
     while True:
-        #print('Position', pos)
+        # print('Position', pos)
         pos = next_pos(pos, grid_size, trajectory)
         tree_count += grid[pos.y][pos.x]
         if pos.y == grid_size.y - 1:
@@ -69,15 +69,13 @@ def solve2(filename):
         Vector(7, 1),
         Vector(1, 2),
     ]
-    tree_counts = [
-        count_trees(grid_data, trajectory)
-        for trajectory in trajectories]
+    tree_counts = [count_trees(grid_data, trajectory) for trajectory in trajectories]
     result = functools.reduce(operator.mul, tree_counts)
     return result
 
 
-if __name__ == '__main__':
-    solution = solve('data/day003.in')
-    print('Day 003 (Part 1): ', solution)
-    solution = solve2('data/day003.in')
-    print('Day 003 (Part 2): ', solution)
+if __name__ == "__main__":
+    solution = solve("data/day003.in")
+    print("Day 003 (Part 1): ", solution)
+    solution = solve2("data/day003.in")
+    print("Day 003 (Part 2): ", solution)
