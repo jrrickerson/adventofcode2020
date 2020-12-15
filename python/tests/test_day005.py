@@ -106,6 +106,33 @@ def test_to_binary_sequence_many_off_chars():
     assert sequence == [1, 1, 0, 0, 1, 0, 1, 0, 0, 0]
 
 
+def test_find_adjacent_subset_no_result():
+    vacant = {1, 2, 3}
+    occupied = {4, 5, 6}
+
+    seat = day005.find_adjacent_subset(vacant, occupied)
+
+    assert seat is None
+
+
+def test_find_adjacent_subset_single_result():
+    vacant = {1, 2, 3, 7}
+    occupied = {4, 5, 6, 8}
+
+    seat = day005.find_adjacent_subset(vacant, occupied)
+
+    assert seat == 7
+
+
+def test_find_adjacent_subset_first_result():
+    vacant = {1, 2, 3, 7, 11}
+    occupied = {4, 5, 6, 8, 10, 12}
+
+    seat = day005.find_adjacent_subset(vacant, occupied)
+
+    assert seat == 7
+
+
 def test_part_one_examples():
     data = 'FBFBBFFRLR'
     seat_id = day005.part_one(io.StringIO(data), rows=128, cols=8)
