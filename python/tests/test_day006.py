@@ -60,30 +60,30 @@ def test_parse_groups_multiple_blanks():
     assert groups[1] == ["a", "a", "a", "a"]
 
 
-def test_count_answers_empty():
+def test_count_answer_set_union_empty():
     answers = []
-    count = day006.count_answers(answers)
+    count = day006.count_answer_set_union(answers)
 
     assert count == 0
 
 
-def test_count_answers_single_entry():
+def test_count_answer_set_union_single_entry():
     answers = ["abc"]
-    count = day006.count_answers(answers)
+    count = day006.count_answer_set_union(answers)
 
     assert count == 3
 
 
-def test_count_answers_matching_entries():
+def test_count_answer_set_union_matching_entries():
     answers = ["a", "a", "a", "a"]
-    count = day006.count_answers(answers)
+    count = day006.count_answer_set_union(answers)
 
     assert count == 1
 
 
-def test_count_answers_multiple_entries():
+def test_count_answer_set_union_multiple_entries():
     answers = ["ab", "ac"]
-    count = day006.count_answers(answers)
+    count = day006.count_answer_set_union(answers)
 
     assert count == 3
 
