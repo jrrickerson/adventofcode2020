@@ -18,6 +18,12 @@ def count_answer_set_union(group):
     return len(answer_set)
 
 
+def count_answer_set_intersection(group):
+    """Given a list of strings, find the intersection set of all characters in any string"""
+    answer_set = set.intersection(*(set(answer) for answer in group))
+    return len(answer_set)
+
+
 def part_one(answer_data):
     """Get the sum of all lengths of the answer sets from any of the groups"""
     group_counts = []
@@ -26,10 +32,21 @@ def part_one(answer_data):
     return sum(group_counts)
 
 
+def part_two(answer_data):
+    """Get the sum of all lengths of the answer sets from all of the people in the groups"""
+    group_counts = []
+    for answer_group in parse_groups(answer_data):
+        group_counts.append(count_answer_set_intersection(answer_group))
+    return sum(group_counts)
+
+
 def solve(filename):
     with open(filename) as f:
         solution = part_one(f)
     print("Day 006 (Part 1): ", solution)
+    with open(filename) as f:
+        solution = part_two(f)
+    print("Day 006 (Part 2): ", solution)
 
 
 if __name__ == "__main__":

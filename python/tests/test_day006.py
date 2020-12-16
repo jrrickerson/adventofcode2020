@@ -88,6 +88,34 @@ def test_count_answer_set_union_multiple_entries():
     assert count == 3
 
 
+def test_count_answer_set_intersection_single_answer():
+    answers = ["abc"]
+    count = day006.count_answer_set_intersection(answers)
+
+    assert count == 3
+
+
+def test_count_answer_set_intersection_no_intersection():
+    answers = ["abc", "def", "ghi"]
+    count = day006.count_answer_set_intersection(answers)
+
+    assert count == 0
+
+
+def test_count_answer_set_intersection_single_intersection():
+    answers = ["abc", "adef", "aghi"]
+    count = day006.count_answer_set_intersection(answers)
+
+    assert count == 1
+
+
+def test_count_answer_set_intersection_all_intersect():
+    answers = ["abc", "abc", "abc"]
+    count = day006.count_answer_set_intersection(answers)
+
+    assert count == 3
+
+
 def test_part_one_exmaple():
     data = """abc
 
@@ -108,3 +136,25 @@ def test_part_one_exmaple():
     result = day006.part_one(io.StringIO(data))
 
     assert result == 11
+
+
+def test_part_two_example():
+    data = """abc
+
+    a
+    b
+    c
+
+    ab
+    ac
+
+    a
+    a
+    a
+    a
+
+    b"""
+
+    result = day006.part_two(io.StringIO(data))
+
+    assert result == 6
