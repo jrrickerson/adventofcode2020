@@ -28,4 +28,4 @@ To run the pytest unit tests:
 
 To run the solutions:
 
-Each solution is written as both a module and a script. Simply run each Python file on the command line or via the IDE tool of your choice (i.e. `python python/day001.py`). Note that some solutions may potentially require parameters passed on the command line and will be documented as such.
+Each solution is written as both a module and a script. Simply run each Python file on the command line or via the IDE tool of your choice (i.e. `python -m python.day001`). Note that some solutions may potentially require parameters passed on the command line and will be documented as such.
