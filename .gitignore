@@ -1,0 +1,6 @@
+#pipenv
+Pipfile.lock
+
+#coverage
+.coverage
+htmlcov/
