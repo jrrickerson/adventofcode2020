@@ -1,5 +1,5 @@
 """Advent of Code 2020
-   Day 6 Solution - Custom Customs
+   Day 7 Solution - Handy Haversacks
 """
 from .lib import graph
 
